@@ -17,4 +17,5 @@ WebPlatform: MVC projekat
 Instalirati
 
 Redis: https://github.com/MicrosoftArchive/redis/releases/download/win-3.2.100/Redis-x64-3.2.100.msi
+
 Visual Studio (2019 ili 2022)
