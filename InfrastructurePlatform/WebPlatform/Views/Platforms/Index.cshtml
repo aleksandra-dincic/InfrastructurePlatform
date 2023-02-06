@@ -1,0 +1,64 @@
+﻿@using Application.Model
+@model List<PlatformModel>
+
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Infrastructure Platforms</h1>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 50px">
+    <div class="col-md-12">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlatformModal">Add Platform</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row text-center text-white">
+            @foreach (var platform in Model)
+            {
+                <div class="card bg-success col-md-3" style="padding: 50px; margin-top: 40px">
+                    <a href="/Platforms/Platform?id=@platform.Id" style="color: white; text-decoration: none;"><h2>@platform.Name</h2></a>
+                </div>
+                <div class="col-md-1"></div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addPlatformModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add new platform</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="newPlatformName">Name: </label>
+                        <input type="text" class="form-control" placeholder="Enter name..." id="newPlatformName" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newPlatformVersion">Version: </label>
+                        <input type="text" class="form-control" placeholder="Enter version..." id="newPlatformVersion" />
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <label for="newPlatformDescription">Description: </label>
+                        <textarea type="text" class="form-control" placeholder="Enter Description..." id="newPlatformDescription"></textarea>
+                    </div>
+                    <div class="col-md-21" style="margin-top: 20px">
+                        <label for="newPlatformPhotoUrl">Photo Url: </label>
+                        <input type="text" class="form-control" placeholder="Enter photo url..." id="newPlatformPhotoUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Site.addPlatform()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

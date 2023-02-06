@@ -1,0 +1,15 @@
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\bin\Debug\net6.0\Persistence.deps.json
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\bin\Debug\net6.0\Persistence.dll
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\bin\Debug\net6.0\Persistence.pdb
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\bin\Debug\net6.0\Domain.dll
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\bin\Debug\net6.0\Domain.pdb
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.csproj.AssemblyReference.cache
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfoInputs.cache
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfo.cs
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.csproj.CoreCompileInputs.cache
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.csproj.CopyComplete
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.dll
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\refint\Persistence.dll
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\Persistence.pdb
+D:\RedisInfrastructure\InfrastructurePlatform\Persistence\obj\Debug\net6.0\ref\Persistence.dll

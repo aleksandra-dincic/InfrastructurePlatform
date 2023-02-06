@@ -1,0 +1,66 @@
+﻿@using Application.Model
+@model PlatformModel
+
+<input type="hidden" id="editPlatformId" value="@Model.Id" />
+<div class="row">
+    <div class="col-md-6">
+        <img src="@Model.PictureUrl" class="img-fluid" />
+    </div>
+     <div class="col-md-6 text-center">
+         <h1>@Model.Name</h1>
+         <div class="row" style="margin-top: 40px">
+             <div class="col-md-1">
+                <button class="btn btn-warning btn-group-sm" data-bs-target="#editPlatformModal" data-bs-toggle="modal">Edit</button>
+             </div>
+            <div class="col-md-1">
+                <button class="btn btn-danger btn-group-sm" onclick="Site.deletePlatform('@Model.Id')">Delete</button>
+            </div>
+         </div>
+         <div class="row" style="margin-top: 50px; text-align: left">
+             <div class="col-md-12">
+                <h5><b>Id:</b> @Model.Id</h5>
+             </div>
+            <div class="col-md-12" style="margin-top: 20px">
+                <h5><b>Version:</b> @Model.Version</h5>
+            </div>
+            <div class="col-md-12" style="margin-top: 20px">
+                <h5><b>Description:</b> @Model.Description</h5>
+            </div>
+         </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editPlatformModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit platform</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="newPlatformName">Name: </label>
+                        <input type="text" class="form-control" value="@Model.Name" placeholder="Enter name..." id="editPlatformName" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newPlatformVersion">Version: </label>
+                        <input type="text" class="form-control" value="@Model.Version" placeholder="Enter version..." id="editPlatformVersion" />
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <label for="newPlatformDescription">Description: </label>
+                        <textarea type="text" class="form-control" placeholder="Enter Description..." id="editPlatformDescription">@Model.Description</textarea>
+                    </div>
+                    <div class="col-md-21" style="margin-top: 20px">
+                        <label for="newPlatformPhotoUrl">Photo Url: </label>
+                        <input type="text" class="form-control" value="@Model.PictureUrl" placeholder="Enter photo url..." id="editPlatformPhotoUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Site.updatePlatform()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

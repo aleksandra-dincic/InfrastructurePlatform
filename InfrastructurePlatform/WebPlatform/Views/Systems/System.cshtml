@@ -1,0 +1,138 @@
+﻿@using Application.Model
+@model SystemModel
+
+<input type="hidden" id="editSystemId" value="@Model.Id" />
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>@Model.Name</h1>
+    </div>
+</div>
+
+<input type="hidden" value="@Model.Id" id="systemId"/>
+<div class="row" style="margin-top: 50px; text-align: left">
+    <div class="col-md-12">
+        <h5><b>Id:</b> @Model.Id</h5>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px">
+        <h5><b>Version:</b> @Model.Version</h5>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px">
+        <h5><b>Operating System:</b> @Model.OperatingSystem</h5>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px">
+        <h5><b>Description:</b> @Model.Description</h5>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px; margin-bottom: 20px">
+        <h5 style="margin-bottom: 20px"><b>All Services included:</b></h5>
+        @foreach (var System in Model.Platforms)
+        {
+            <label class="form-label bg-success text-white" style="padding: 10px; border-radius: 10px">
+                <a href="/Platforms/Platform?id=@System.Id" style="text-decoration: none; color: white;"> @System.Name</a>
+            </label>
+        }
+    </div>
+</div>
+
+<div class="row" style="margin-top: 40px">
+    <div class="col-md-1">
+        <button class="btn btn-warning" data-bs-target="#editSystemModal" data-bs-toggle="modal">Edit</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-danger " onclick="Site.deleteSystem('@Model.Id')">Delete</button>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" data-bs-target="#addServiceModal" data-bs-toggle="modal">Add Service</button>
+    </div>
+</div>
+
+<div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Service to the System</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                    <div class="col-md-12" style="margin-top: 20px">
+                       <label for="newOperatingSystem">Operating System: </label>
+                        <select multiple class="form-select" id="newOperatingSystem">
+                            @if (Model != null && Model.AllPlatforms.Count > 0) 
+                            {
+                                foreach (var service in Model.AllPlatforms)
+                                {
+                                    if (Model.Platforms.Any(x => x.Id == service.Id))
+                                    {
+                                        <option selected value="@service.Id">@service.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@service.Id">@service.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Site.addServices()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editSystemModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit System</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="editSystemName">Name: </label>
+                        <input type="text" class="form-control" value="@Model.Name" placeholder="Enter name..." id="editSystemName" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editSystemVersion">Version: </label>
+                        <input type="text" class="form-control" value="@Model.Version" placeholder="Enter version..." id="editSystemVersion" />
+                    </div>
+                    <div class="col-md-6" style="margin-top: 20px">
+                        <label for="editSystemOperatingSystem">Operating System: </label>
+                        <select class="form-select" id="editSystemOperatingSystem">
+                            @if (Model.OperatingSystem == "Windows")
+                            {
+                                <option value="Windows" selected>Windows</option>
+                                <option value="Linux">Linux</option>
+                                <option value="macOS">macOS</option>
+                            }
+                            else if (Model.OperatingSystem == "Linux")
+                            {
+                                <option value="Windows">Windows</option>
+                                <option value="Linux" selected>Linux</option>
+                                <option value="macOS">macOS</option>
+                            }
+                            else
+                            {
+                                <option value="Windows">Windows</option>
+                                <option value="Linux">Linux</option>
+                                <option value="macOS" selected>macOS</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <label for="editSystemDescription">Description: </label>
+                        <textarea type="text" class="form-control" placeholder="Enter Description..." id="editSystemDescription">@Model.Description</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Site.updateSystem()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

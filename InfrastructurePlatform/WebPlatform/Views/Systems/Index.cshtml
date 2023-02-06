@@ -1,0 +1,90 @@
+﻿@using Application.Model
+@model SystemAndPlatformsModel
+
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>All Active Systems</h1>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 50px">
+    <div class="col-md-12">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSystemModal">Create New System</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row text-center">
+            @if (Model.Systems.Count == 0)
+            {
+                <h1 class="text-center" style="margin-top: 100px">There is no systems currently.</h1>
+                <h1>Use "Create New System" button to add new system.</h1>
+            }
+            else
+            {
+                @foreach (var system in Model.Systems)
+                {
+                    <div class="bg-success col-md-3" style="padding: 50px; margin-top: 40px">
+                        <a href="/Systems/System?id=@system.Id" style="color: white; text-decoration: none;"><h2>@system.Name</h2></a>
+                    </div>
+                    <div class="col-md-1"></div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addSystemModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add new system</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="newSystemName">Name: </label>
+                        <input type="text" class="form-control" placeholder="Enter name..." id="newSystemName" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newSystemVersion">Version: </label>
+                        <input type="text" class="form-control" placeholder="Enter version..." id="newSystemVersion" />
+                    </div>
+                    <div class="col-md-6" style="margin-top: 20px">
+                        <label for="newSystemOperatingSystem">Operating System: </label>
+                        <select class="form-select" id="newSystemOperatingSystem">
+                            <option value="0" disabled selected>Please select OS... </option>
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                            <option value="macOS">macOS</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <label for="newSystemServices">Services: </label>
+                        <select multiple class="form-select" id="newSystemServices">
+                            <option value="0" disabled selected>Please add services to system... </option>
+                            @if (Model.AllPlatforms != null)
+                            {
+                                foreach (var service in Model.AllPlatforms)
+                                {
+                                    <option value="@service.Id">@service.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <label for="newSystemDescription">Description: </label>
+                        <textarea type="text" class="form-control" placeholder="Enter Description..." id="newSystemDescription"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Site.addSystem()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
